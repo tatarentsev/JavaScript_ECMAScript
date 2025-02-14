@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Example #1
+        // const MusicSeries = {
+        //     model: "music series",
+        //     power: 200,
+        //     batterySize: 2100,
+        //     boxSize: 0.5,
+        //     workTime: 45,
+        //     startWipe() {
+        //         console.log('I am a method of MusicSeries');
+        //         console.log("I am a starting to wipe the floor...");
+        //     },
+        // };
+
+        // const Blues = {
+        //     model: "Blues-1",
+        //     power: 250,
+        //     batterySize: 2500,
+        //     workTime: 50
+        // };
+
+        // function getPrototypeChain(obj) {
+        //     const arrayPrototype = [];
+        //     let currentObj = obj;
+
+        //     while (currentObj != null) {
+        //         arrayPrototype.push(currentObj);
+        //         currentObj = Object.getPrototypeOf(currentObj);
+        //     }
+
+        //     return arrayPrototype;
+        // }
+
+        // const obj = {};
+        // const prototypeChain = getPrototypeChain(obj);
+        // console.log(prototypeChain);
+
+        // Example #2
+        // class Animal {
+        //     constructor(name) {
+        //         this.name = name;
+        //     }
+
+        //     speak() {
+        //         console.log('gav gav');
+        //     }
+        // }
+
+        // class Dog extends Animal {
+        //     constructor(name, breed) {
+        //         super(name);
+        //         this.breed = breed;
+        //     }
+
+        //     fetch() {
+        //         console.log(`Собака ${this.name} принесла мяч.`);
+        //     }
+        // }
+
+        // const animall = new Animal("Животное");
+        // animall.speak();
+
+        // const dog1 = new Dog("Бобик", "Дворняжка");
+        // dog1.speak();
+        // console.log(dog1.breed);
+        // dog1.fetch();
+
+        // Example #3 
+        class Product {
+            constructor(name, price) {
+                this.name = name;
+                this.price = price;
+            }
+        }
+
+        class ShoppingCart {
+            constructor(customerName, initialTotalCost) {
+                this.customerName = customerName;
+                this.initialTotalCost = initialTotalCost;
+                this.items = [];
+            }
+
+            addItem(product, quantity = 1) {
+                this.initialTotalCost += product.price * quantity;
+                this.items.push({ product, quantity });
+            }
+
+            getCurrentTotalCost() {
+                console.log(`На данный момент общая стоимость заказа: ${this.initialTotalCost}`);
+            }
+
+            checkout() {
+                console.log(`Заказ оформлен для ${this.customerName}. Общая стоимость заказа:
+${this.initialTotalCost} рублей. Спасибо за покупку!`);
+            }
+        }
+
+        const userShop = new ShoppingCart('Илья', 0);
+
+        const fProduct1 = new Product('Футболка times', 1500);
+        const fProduct2 = new Product('Худи', 2220);
+        const fProduct3 = new Product('Шорты', 700);
+
+        userShop.addItem(fProduct1, 3);
+        userShop.addItem(fProduct1, 2);
+        userShop.addItem(fProduct3, 5);
+        userShop.getCurrentTotalCost();
+        userShop.checkout();
+    </script>
+</body>
+</html>
