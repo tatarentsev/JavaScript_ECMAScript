@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Example #1
+        // function delayMessage(message, delay) {
+        //     setTimeout(() => {
+        //         console.log(message)
+        //     }, delay);
+        // }
+
+        // delayMessage("Сообщение 1", 2000);
+        // delayMessage("Сообщение 2", 1000);
+        // delayMessage("Сообщение 3", 3000);
+
+        // delayMessage("End of programm :)", 3000);
+
+        // Example #2
+        // const tasks = [
+        //     { name: 'task 1', time: 1000 },
+        //     { name: 'task 2', time: 2000 },
+        //     { name: 'task 3', time: 3000 },
+        //     { name: 'task 4', time: 4000 },
+        //     { name: 'task 5', time: 5000 }
+        // ];
+
+        // function getTask() {
+        //     tasks.forEach(element => {
+        //         setTimeout(() => console.log(element.name), element.time)
+        //     });
+        // };
+
+        // getTask();
+
+        // Example #3
+        // const url = 'https://jsonplaceholder.typicode.com/users';
+        // function loadData(url) {
+        //     const xhr = new XMLHttpRequest();
+
+        //     xhr.onreadystatechange = function () {
+        //         if (xhr.readyState === 4 && xhr.status === 200) {
+        //             console.log(xhr.responseText);
+        //         }
+        //     }
+
+        //     xhr.open('GET', url, true);
+        // }
+
+        // loadData(url);
+
+        // Example #4
+        // fetch('https://jsonplaceholder.typicode.com/users')
+        //     .then((result) => {
+        //         if (result.ok) {
+        //             return result.text();
+        //         }
+        //         throw new Error ("Error");
+        //     })
+        //     .then(data => {
+        //         console.log(data);
+        //     })
+        //     .catch((err) => {
+        //         console.error("Errorrrrrrrrrrrrrrrrr");
+        //     });
+
+        // Example #5
+
+        const url = "https://jsonplaceholder.typicode.com/users";
+
+        async function getData(url) {
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.log(error.message);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', async (e) => {
+            const data = await getData(url);
+
+            const alphabet = 'abcdefjhijklmnopqrstuvwxyz';
+            const arrayIndexOfWord = [];
+
+            data.forEach(element => {
+                let totalSum = data[0];
+                let elementId = element.id;
+                // for (let i = 0; i < alphabet.length; i++) {
+                    //     if (element.username[indexOfWord].toLowerCase() === alphabet[i]) {
+                    //         totalSum += i;
+                    //     }
+                    for (let i = 0; i < data.length; i++) {
+                        for (let j = 1; j < data.length; j++) {
+                            console.log(`${element.username.charAt(0).toLowerCase()} < ${data[j].username.charAt(0).toLowerCase()}`);
+                            if (element.username.charAt(0).toLowerCase() < element.username.charAt(0).toLowerCase()) {
+                                totalSum = element.username[i];
+                                console.log('yes');
+                                break;
+                            }
+                        }
+                    }
+                    
+                // }
+                arrayIndexOfWord.push( {elementId, totalSum} );
+            });
+                
+            for (let i = 0; i < arrayIndexOfWord.length; i++) {
+                for (let j = 0; j < arrayIndexOfWord.length; j++) {
+                    if (arrayIndexOfWord[i].totalSum < arrayIndexOfWord[j].totalSum) {
+                        const temp = arrayIndexOfWord[i].totalSum;
+                        arrayIndexOfWord[i].totalSum = arrayIndexOfWord[j].totalSum;
+                        arrayIndexOfWord[j].totalSum = temp;
+
+                        const temp2 = arrayIndexOfWord[i].elementId;
+                        arrayIndexOfWord[i].elementId = arrayIndexOfWord[j].elementId;
+                        arrayIndexOfWord[j].elementId = temp2;
+                    }
+                }
+            }
+
+            console.log(arrayIndexOfWord);
+            const newArray = [];
+            for (let index = 0; index < arrayIndexOfWord.length; index++) {
+                for (let e = 0; e < arrayIndexOfWord.length; e++) {
+                    if (arrayIndexOfWord[index].elementId === data[e].id) {
+                        newArray.push(data[e]);
+                        break;
+                    }
+                }
+            }
+
+            console.log(newArray);
+        });
+    </script>
+</body>
+</html>
